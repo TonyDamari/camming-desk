@@ -14,7 +14,7 @@ connectDB();
 //Midddleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
+app.use(express.static("frontend/build"));
 //
 app.get("/", (req, res) => {
     res.sendFile(
