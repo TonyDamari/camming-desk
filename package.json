@@ -2,7 +2,7 @@
     "name": "camming-desk",
     "version": "1.0.0",
     "description": "Camming desk app",
-    "main": "server.js",
+    "main": "index.js",
     "scripts": {
         "start": "node backend/server.js",
         "server": "nodemon backend/server.js",
