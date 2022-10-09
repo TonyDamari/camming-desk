@@ -9,11 +9,11 @@ const {
     deleteJob,
 } = require("../controllers/jobController");
 
-router.route("/").get(getJobs).post(createJob);
+router.route("/").get(protect,getJobs).post(protect,createJob);
 
 router
     .route("/:id")
-    .get(getJob)
+    .get(protect,getJob)
     .delete(protect, deleteJob)
     .put(updateJob);
 
