@@ -15,11 +15,6 @@ connectDB();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-//
-app.get("/", (req, res) => {
-   res.send("Camming Desk");
-});
-
 //Routes
 app.use("/api/users", require("./routes/userRoutes"));
 app.use("/api/jobs", require("./routes/jobRoutes"));
@@ -28,12 +23,16 @@ app.use(errorHandler);
 //Serve static assest in production
 if (process.env.NODE_ENV === "production") {
     //set static folder
-    app.use(express.static("frontend/build"));
+    app.use(express.static(path.join(__dirname, "..", "frontend/build")));
 
     app.get("*", (req, res) => {
         res.sendFile(
-            path.resolve(__dirname, "frontend", "build", "index.html")
+            path.resolve(__dirname, "..", "frontend", "build", "index.html")
         );
+    });
+} else {
+    app.get("/", (req, res) => {
+        res.send("Camming Desk");
     });
 }
 
