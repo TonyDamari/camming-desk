@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
-const mongoosePagination = require('mongoose-paginate-v2')
-
+const mongoosePagination = require("mongoose-paginate-v2");
 
 const jobSchema = mongoose.Schema(
     {
@@ -43,6 +42,7 @@ const jobSchema = mongoose.Schema(
                 "Proto to Production",
                 "Restep",
                 "Import",
+                "ECP",
             ],
         },
         thickness: {
@@ -63,5 +63,5 @@ const jobSchema = mongoose.Schema(
     }
 );
 
-jobSchema.plugin(mongoosePagination)
+jobSchema.plugin(mongoosePagination);
 module.exports = mongoose.model("Job", jobSchema);
