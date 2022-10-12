@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import BackButton from "../components/BackButton";
 import Spinner from "../components/Spinner";
@@ -22,10 +22,6 @@ const Jobs = () => {
         dispatch(getJobs());
     }, [dispatch]);
 
-    // const handlepagination = async () => {
-
-    // };
-
     if (isLoading) {
         return <Spinner />;
     }
@@ -48,9 +44,6 @@ const Jobs = () => {
                     <p>No jobs currently available</p>
                 )}
             </div>
-            {/* <button className="btn" onClick={handlepagination}>
-                More
-            </button> */}
         </>
     );
 };

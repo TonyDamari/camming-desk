@@ -147,11 +147,12 @@ const NewJob = () => {
                         >
                             <option value="Proto">Proto</option>
                             <option value="Production">Production</option>
-                            <option value="Proto To Production">
+                            <option value="Proto to Production">
                                 Proto to Production
                             </option>
                             <option value="Restep">Restep</option>
                             <option value="Import">Import</option>
+                            <option value="ECP">ECP</option>
                         </select>
                     </div>
                     <div className="form-group">
