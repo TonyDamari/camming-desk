@@ -185,6 +185,10 @@ h3 {
     transform: scale(0.98);
 }
 
+.btn:disabled{
+    cursor: not-allowed;
+}
+
 .job-created {
     border: 1px solid #e6e6e6;
     border-radius: 5px;
@@ -402,6 +406,20 @@ footer {
     color: rgb(11, 141, 11);
 }
 
+.pagination{
+display: flex;
+align-items: center;
+justify-content: center;
+margin: 20px auto;
+}
+
+.pagination button{
+    margin: 0 30px;
+}
+
+.open{
+    color: midnightblue;
+}
 @keyframes spin {
     0% {
         transform: rotate(0deg);

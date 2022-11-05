@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import jobService from "./jobService";
 
 const initialState = {
-    jobs: [],
+    jobs: {},
     job: {},
     isError: false,
     isSuccess: false,
@@ -31,10 +31,10 @@ export const createJob = createAsyncThunk(
 );
 
 //Get user jobs
-export const getJobs = createAsyncThunk("jobs/getAll", async (_, thunkAPI) => {
+export const getJobs = createAsyncThunk("jobs/getAll", async (page, thunkAPI) => {
     try {
         const token = thunkAPI.getState().auth.user.token;
-        return await jobService.getJobs(token);
+        return await jobService.getJobs(page,token);
     } catch (error) {
         const message =
             (error.response &&
@@ -71,6 +71,26 @@ export const closeJob = createAsyncThunk(
         try {
             const token = thunkAPI.getState().auth.user.token;
             return await jobService.closeJob(jobId, token);
+        } catch (error) {
+            const message =
+                (error.response &&
+                    error.response.data &&
+                    error.response.data.message) ||
+                error.message ||
+                error.toString();
+
+            return thunkAPI.rejectWithValue(message);
+        }
+    }
+);
+
+//Search job
+export const searchJob = createAsyncThunk(
+    "jobs/search",
+    async (jobId, thunkAPI) => {
+        try {
+            const token = thunkAPI.getState().auth.user.token;
+            return await jobService.searchJob(jobId, token);
         } catch (error) {
             const message =
                 (error.response &&

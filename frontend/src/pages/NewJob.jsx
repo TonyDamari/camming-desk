@@ -155,7 +155,7 @@ const NewJob = () => {
                             <option value="ECP">ECP</option>
                         </select>
                     </div>
-                    <div className="form-group">
+                    {/* <div className="form-group">
                         <label htmlFor="thickness">Thickness</label>
                         <input
                             type="text"
@@ -164,7 +164,7 @@ const NewJob = () => {
                             value={thickness}
                             onChange={(e) => setThickness(e.target.value)}
                         />
-                    </div>
+                    </div> */}
                     <div className="form-group">
                         <label htmlFor="sales">Sales Person</label>
                         <input

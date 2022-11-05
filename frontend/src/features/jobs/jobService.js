@@ -16,17 +16,20 @@ const createJob = async (jobData, token) => {
 };
 
 //Get user jobs
-const getJobs = async (token) => {
+const getJobs = async (page, token) => {
     const config = {
         headers: {
             Authorization: `Bearer ${token}`,
         },
-        
     };
 
-    const response = await axios.get(API_URL , config);
+    const response = await axios.get(`/api/jobs?page=${page}`, config);
 
-    return response.data;
+    const { jobs, paginationData } = response.data;
+    // console.log(jobs)
+    // console.log(paginationData)
+
+    return { jobs, paginationData };
 };
 
 //Get user job
@@ -58,6 +61,19 @@ const closeJob = async (jobId, token) => {
 
     return response.data;
 };
+
+// //search job
+// const searchJob = async (jobId, token) => {
+//     const config = {
+//         headers: {
+//             Authorization: `Bearer ${token}`,
+//         },
+//     };
+
+//     const response = await axios.get(API_URL + jobId, config);
+
+//     return response.data;
+// };
 
 const jobService = {
     createJob,

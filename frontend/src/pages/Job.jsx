@@ -113,15 +113,19 @@ const Job = () => {
                         {job.customer}
                     </p>
                     <p>
+                        <span className="text-bold">Reference:</span>{" "}
+                        {job.ref}
+                    </p>
+                    <p>
                         <span className="text-bold">Board:</span> {job.board}
                     </p>
                     <p>
                         <span className="text-bold">Panel:</span> {job.panel}
                     </p>
-                    <p>
+                    {/* <p>
                         <span className="text-bold">Thickness:</span>{" "}
                         {job.thickness}
-                    </p>
+                    </p> */}
                     <p>
                         <span className="text-bold">Sales:</span> {job.sales}
                     </p>

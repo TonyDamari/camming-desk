@@ -28,6 +28,9 @@ export default function App() {
                         <Route path="/jobs" element={<PrivateRoute />}>
                             <Route path="/jobs" element={<Jobs />} />
                         </Route>
+                        <Route path="/search/:searchText" element={<PrivateRoute />}>
+                            <Route path="/search/:searchText" element={<Jobs />} />
+                        </Route>
                         <Route path="/job/:jobId" element={<PrivateRoute />}>
                             <Route path="/job/:jobId" element={<Job />} />
                         </Route>
