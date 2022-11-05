@@ -6,18 +6,42 @@ const Job = require("../models/jobModel");
 //@route GET/api/jobs
 //@access Private
 const getJobs = asyncHandler(async (req, res) => {
+    const perPage = 30;
+    const page = req.query.page;
+    const totalJobsLength = await Job.countDocuments().exec();
+    const open = await Job.find({ status: "new" }).count();
+
+    let totalPages;
+    if (totalJobsLength % perPage > 0) {
+        totalPages = Math.floor(totalJobsLength / perPage) + 1;
+    } else {
+        totalPages = Math.floor(totalJobsLength / perPage);
+    }
+
+    let showingUntil;
+    if (perPage * page > totalJobsLength) {
+        showingUntil = totalJobsLength;
+    } else {
+        showingUntil = perPage * page;
+    }
+
     const jobs = await Job.find()
-    .sort({ $natural: -1 });
+        .sort({ $natural: -1 })
+        .skip(perPage * (page - 1))
+        .limit(perPage);
 
-    // const options = {
-    //     page: 1,
-    //     limit: 3,
-    //     sort: { $natural: -1 },
-    // };
-
-    // const jobs = await Job.paginate({}, options);
-
-    res.status(200).json(jobs);
+    // res.status(200).json(jobs);
+    res.status(200).send({
+        jobs,
+        paginationData: {
+            totalPages,
+            currentPage: page,
+            showingFrom: perPage * (page - 1) + 1,
+            showingUntil,
+            totalResults: totalJobsLength,
+            openJobs: open,
+        },
+    });
 });
 
 //@desc Get job
